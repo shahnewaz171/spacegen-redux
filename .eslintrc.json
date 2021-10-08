@@ -4,7 +4,7 @@
         "commonjs": true,
         "es2021": true
     },
-    "extends": ["airbnb", "prettier"],
+    "extends": ["airbnb", "airbnb/hooks", "prettier"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -14,7 +14,13 @@
     },
     "plugins": ["prettier"],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "arrow-body-style": ["error", "always"]
+        "react/jsx-filename-extension": "off",
+        "arrow-body-style": "off",
+        "no-console": "off",
+        "no-multi-spaces":"error",
+        "no-unused-vars": "off",
+        "import/prefer-default-export": "off",
+        "no-param-reassign": "off",
+        "no-unused-expressions": "off"
     }
 }
