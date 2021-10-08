@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment } from '../redux/reducers/counterReducer';
+import { decrement, increment } from '../redux/reducersActions/counterReducer';
 
 const Card = () => {
     const count = useSelector((state) => state.counter);
