@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar = () => {
 
     return (
-        <header className="container">
+        <div className="">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand fw-bold fs-4" href="/#">Spacegen</a>
@@ -28,7 +28,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-        </header>
+        </div>
     );
 };
 
