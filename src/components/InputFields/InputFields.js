@@ -2,6 +2,8 @@ import React from 'react';
 
 const InputFields = () => {
 
+    const rocketSearch = () => {}
+
     return (
         <div className="mt-5">
             <div className="row align-items-center justify-content-center">
@@ -42,8 +44,8 @@ const InputFields = () => {
                     <div className="d-flex flex-column">
                         <p> </p>
                         <div id="search" className="input-group">
-                            <input type="text" className="form-control" placeholder="What rocket are you looking for?" />
-                            <button type ="submit" className ="btn btn-primary">Search</button>
+                            <input type="search" className="form-control" placeholder="What rocket are you looking for?" />
+                            <button type="button" className ="btn btn-primary">Search</button>
                         </div>
                     </div>
                 </div>
