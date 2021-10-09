@@ -36,6 +36,7 @@
             "some": [ "nesting", "id"  ]
           }
         }],
-        "react/prop-types": 0
+        "react/prop-types": 0,
+        "camelcase": "off"
   }
 }

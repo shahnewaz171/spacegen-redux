@@ -4,7 +4,7 @@ import MissionList from '../MissionList/MissionList';
 import { fetchMissions } from './fetchMissionsInfo';
 
 const Missions = () => {
-    const {missions} = useSelector((state) => state.missionsInfo);
+    const { missions } = useSelector((state) => state.missionsInfo);
 
     const dispatch = useDispatch();
 
@@ -12,7 +12,7 @@ const Missions = () => {
         dispatch(fetchMissions());
     }, [dispatch]);
 
-    console.log(missions);
+    // console.log(missions);
 
 
     return (
