@@ -46,14 +46,13 @@ const Missions = () => {
 
 
     return (
-        <>
+        <div data-testid = "cards">
             <div className="row align-items-center justify-content-center mt-5 mx-2">
             <div className="col-6 col-lg-2 pb-2">
                     <div className="d-flex flex-column">
                         <label htmlFor="launchDate">Launch Date</label>
                         <select id="launchDate" onChange={(e) => setSelectedDate(e.target.value)} className="form-select">
                             <option defaultValue="">Choose...</option>
-                            <option value="">Last Week</option>
                             <option value={("0" + (date.getMonth())).slice(-2)}>Last Month</option>
                             <option value={date.getFullYear() - 1}>Last Year</option>
                         </select>
@@ -94,7 +93,7 @@ const Missions = () => {
                 </div>
             </div>
 
-            <div className="mt-4 mx-4">
+            <div className="mt-4 mx-4 mb-5">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     {
                         specificMissions.length ? specificMissions.map((mission) => {
@@ -107,7 +106,7 @@ const Missions = () => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
