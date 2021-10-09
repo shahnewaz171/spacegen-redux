@@ -8,6 +8,7 @@ const Missions = () => {
     const [searchValue, setSearchValue] = useState("");
     const [launchStatus, setLaunchStatus] = useState('');
     const [isUpcoming, setIsUpcoming] = useState('');
+    const [selectedDate, setSelectedDate] = useState('');
 
     const dispatch = useDispatch();
 
@@ -21,7 +22,11 @@ const Missions = () => {
         e.preventDefault();
     }
 
+    const date = new Date();
     const specificMissions = missions?.filter((data) => {
+        const getLaunchDate = new Date(data.launch_date_local);
+        const launchYear = getLaunchDate.getFullYear();
+        const launchMonth= ("0" + (getLaunchDate.getMonth())).slice(-2);
         if(searchValue == ""){
             return data;
         }
@@ -29,25 +34,31 @@ const Missions = () => {
             if((data.launch_success == true && launchStatus == 'success') || (data.upcoming == true && isUpcoming == "upcoming")){
                 return data;
             }
+            else if(launchYear == selectedDate || launchMonth == selectedDate){
+                return data;
+            }
             else if(data.launch_success !== null && data.launch_success == false && launchStatus == 'failure'){
                 return data;
             }
-            else if(launchStatus == '' && isUpcoming == ""){
+            else if(launchStatus == '' && isUpcoming == "" && selectedDate == ""){
                 return data;
             }
         }
     })
+    console.log(selectedDate);
     console.log(specificMissions);
 
     return (
         <>
             <div className="row align-items-center justify-content-center mt-5 mx-2">
-                <div className="col-6 col-lg-2 pb-2">
+            <div className="col-6 col-lg-2 pb-2">
                     <div className="d-flex flex-column">
-                        <label htmlFor="upcoming">Is upcoming?</label>
-                        <select id="upcoming" onChange={(e) => setIsUpcoming(e.target.value)} className="form-select">
-                            <option value="">Choose...</option>
-                            <option value="upcoming">Upcoming</option>
+                        <label htmlFor="launchDate">Launch Date</label>
+                        <select id="launchDate" onChange={(e) => setSelectedDate(e.target.value)} className="form-select">
+                            <option defaultValue="">Choose...</option>
+                            <option value="">Last Week</option>
+                            <option value={("0" + (date.getMonth())).slice(-2)}>Last Month</option>
+                            <option value={date.getFullYear() - 1}>Last Year</option>
                         </select>
                     </div>
                 </div>
@@ -65,15 +76,13 @@ const Missions = () => {
 
                 <div className="col-6 col-lg-2 pb-2">
                     <div className="d-flex flex-column">
-                        <label htmlFor="launchDate">Launch Date</label>
-                        <select id="launchDate" className="form-select">
-                            <option defaultValue="">Choose...</option>
-                            <option value="1">Last Week</option>
-                            <option value="2">Last Month</option>
-                            <option value="3">Last Year</option>
+                        <label htmlFor="upcoming">Is upcoming?</label>
+                        <select id="upcoming" onChange={(e) => setIsUpcoming(e.target.value)} className="form-select">
+                            <option value="">Choose...</option>
+                            <option value="upcoming">Upcoming</option>
                         </select>
                     </div>
-                </div>
+                </div>               
 
                 <div className="col-md-12 col-lg-6">
                    <form onSubmit={searchResults}>
@@ -99,10 +108,6 @@ const Missions = () => {
                         : !isLoading &&
                         <p>No results found for <span className="text-danger">#{searchValue}</span></p> 
                     } */}
-                </div>
-
-                <div className="d-flex justify-content-center mt-5">
-                    <button type="button" className="btn btn-primary">Explore More</button>
                 </div>
             </div>
         </>
