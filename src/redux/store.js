@@ -3,6 +3,6 @@ import missionsReducer from "./reducersActions/missionsReducer";
 
 export default configureStore({
     reducer: {
-        missions: missionsReducer
+        missionsInfo: missionsReducer
     }
 })

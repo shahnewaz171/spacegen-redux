@@ -2,8 +2,6 @@ import React from 'react';
 
 const InputFields = () => {
 
-    const rocketSearch = () => {}
-
     return (
         <div className="mt-5">
             <div className="row align-items-center justify-content-center">
