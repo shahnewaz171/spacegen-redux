@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getError, getMissions } from '../../redux/reducersActions/missionsReducer';
+import { getError } from '../../redux/reducersActions/missionsReducer';
+import { fetchMissions } from './fetchMissionsInfo';
 
 const Missions = () => {
     const missions = useSelector((state) => state.missions);
@@ -13,7 +14,7 @@ const Missions = () => {
         axios.get("https://api.spacexdata.com/v3/launches")
         .then(res => {
             if(res){
-                dispatch(getMissions(res.data))
+                dispatch(fetchMissions())
             }
         })
         .catch(error => {
@@ -52,6 +53,9 @@ const Missions = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="d-flex justify-content-center mt-5">
+                <button type="button" className="btn btn-primary">Explore More</button>
             </div>
         </div>
     );

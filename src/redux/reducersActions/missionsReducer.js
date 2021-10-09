@@ -19,5 +19,5 @@ const missionsSlice = createSlice({
     }
 })
 
-export const { increment, decrement, startLoading, getMissions, getError } = missionsSlice.actions
+export const { startLoading, getMissions, getError } = missionsSlice.actions
 export default missionsSlice.reducer
