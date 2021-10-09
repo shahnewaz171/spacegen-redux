@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counterReducer from "./reducersActions/counterReducer";
+import missionsReducer from "./reducersActions/missionsReducer";
 
 export default configureStore({
     reducer: {
-        counter: counterReducer
+        missions: missionsReducer
     }
 })
