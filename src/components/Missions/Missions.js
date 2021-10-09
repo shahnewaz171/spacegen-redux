@@ -1,7 +1,5 @@
-import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getError } from '../../redux/reducersActions/missionsReducer';
 import { fetchMissions } from './fetchMissionsInfo';
 
 const Missions = () => {
@@ -11,15 +9,7 @@ const Missions = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        axios.get("https://api.spacexdata.com/v3/launches")
-        .then(res => {
-            if(res){
-                dispatch(fetchMissions())
-            }
-        })
-        .catch(error => {
-            dispatch(getError(error))
-        })
+        dispatch(fetchMissions());
     }, [dispatch])
 
 
