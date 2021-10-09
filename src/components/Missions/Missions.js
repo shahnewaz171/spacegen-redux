@@ -1,6 +1,26 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getError, getMissions } from '../../redux/reducersActions/missionsReducer';
 
 const Missions = () => {
+    const missions = useSelector((state) => state.missions);
+    console.log(missions);
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        axios.get("https://api.spacexdata.com/v3/launches")
+        .then(res => {
+            if(res){
+                dispatch(getMissions(res.data))
+            }
+        })
+        .catch(error => {
+            dispatch(getError(error))
+        })
+    }, [dispatch])
+
 
     return (
         <div className="mt-4">
