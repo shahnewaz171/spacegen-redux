@@ -7,7 +7,7 @@ const MissionList = ({ mission }) => {
         <>
             <div className="col">
                 <div className="card h-100">
-                    <img src={links.mission_patch_small} className="card-img-top h-50 w-50 mt-4 mb-2 d-block mx-auto" alt="logo" />
+                    <img src={links.mission_patch_small !== null ? links.mission_patch_small : "https://i.postimg.cc/Zqt1JShg/Create-Avatar.png"} className="card-img-top h-50 w-50 mt-4 mb-2 d-block mx-auto" alt="logo" />
                     <div className="card-body">
                         <h4 className="card-title">{mission_name}</h4>
                         <h5 className="card-title text-primary fw-normal">{rocket.rocket_name}</h5>
