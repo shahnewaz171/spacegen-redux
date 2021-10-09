@@ -41,6 +41,7 @@
         "array-callback-return": 0,
         "no-else-return": 0,
         "consistent-return": 0,
-        "eqeqeq": 0
+        "eqeqeq": 0,
+        "react/jsx-boolean-value": ["error", {"never": ["value"]}]
   }
 }

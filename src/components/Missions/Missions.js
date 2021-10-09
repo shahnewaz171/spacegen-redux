@@ -6,6 +6,7 @@ import { fetchMissions } from './fetchMissionsInfo';
 const Missions = () => {
     const { missions } = useSelector((state) => state.missionsInfo);
     const [searchValue, setSearchValue] = useState("");
+    const [launchStatus, setLaunchStatus] = useState('');
 
     const dispatch = useDispatch();
 
@@ -19,19 +20,27 @@ const Missions = () => {
         e.preventDefault();
     }
 
-    const specificMissions = missions?.filter((data) => {
+    const specificMissions = missions?.filter((data, index) => {
         if(searchValue == ""){
             return data;
         }
         else if(data.rocket?.rocket_name.toLowerCase().includes(searchValue.toLowerCase())){
-            return data;
+            if(data.launch_success == true && launchStatus == 'success'){
+                return data;
+            }
+            else if(data.launch_success !== null && data.launch_success == false && launchStatus == 'failure'){
+                return data;
+            }
+            else if(launchStatus == ''){
+                return data
+            }
         }
     })
-    console.log(specificMissions)
+    console.log(specificMissions);
 
     return (
         <>
-            <div className="row align-items-center justify-content-center mt-5">
+            <div className="row align-items-center justify-content-center mt-5 mx-2">
                 <div className="col-6 col-lg-2 pb-2">
                     <div className="d-flex flex-column">
                         <label htmlFor="upcoming">Is upcoming?</label>
@@ -57,10 +66,10 @@ const Missions = () => {
                 <div className="col-6 col-lg-2 pb-2">
                     <div className="d-flex flex-column">
                         <label htmlFor="launchStatus">Launch Status</label>
-                        <select id="launchStatus" className="form-select">
-                            <option defaultValue="">Choose...</option>
-                            <option value="1">Failure</option>
-                            <option value="2">Success</option>
+                        <select id="launchStatus" onChange={(e) => setLaunchStatus(e.target.value)} className="form-select">
+                            <option value="">Choose...</option>
+                            <option value="failure">Failure</option>
+                            <option value="success">Success</option>
                         </select>
                     </div>
                 </div>
@@ -78,7 +87,7 @@ const Missions = () => {
                 </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-4 mx-4">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
                     {
                         specificMissions.length ? specificMissions.map((mission) => {
