@@ -16,8 +16,6 @@ const Missions = () => {
         dispatch(fetchMissions());
     }, [dispatch]);
 
-    // console.log(searchValue);
-
     const searchResults = (e) => {
         e.preventDefault();
     }
@@ -45,8 +43,7 @@ const Missions = () => {
             }
         }
     })
-    console.log(selectedDate);
-    console.log(specificMissions);
+
 
     return (
         <>
@@ -99,7 +96,7 @@ const Missions = () => {
 
             <div className="mt-4 mx-4">
                 <div className="row row-cols-1 row-cols-md-3 g-4">
-                    {/* {
+                    {
                         specificMissions.length ? specificMissions.map((mission) => {
                             return (
                                 <MissionList mission={mission} key={mission.mission_name} />
@@ -107,7 +104,7 @@ const Missions = () => {
                         })
                         : !isLoading &&
                         <p>No results found for <span className="text-danger">#{searchValue}</span></p> 
-                    } */}
+                    }
                 </div>
             </div>
         </>
