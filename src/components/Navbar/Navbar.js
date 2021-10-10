@@ -3,7 +3,7 @@ import React from 'react';
 const Navbar = () => {
 
     return (
-        <div className="">
+        <div data-testid = "navigation">
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
                     <a className="navbar-brand fw-bold fs-4" href="/#">Spacegen</a>

@@ -5,7 +5,7 @@ const MissionList = ({ mission }) => {
 
     return (
         <>
-            <div className="col">
+            <div data-testid = "missionCard" className="col">
                 <div className="card h-100">
                     <img src={links.mission_patch_small !== null ? links.mission_patch_small : "https://i.postimg.cc/Zqt1JShg/Create-Avatar.png"} className="card-img-top h-50 w-50 mt-4 mb-2 d-block mx-auto" alt="logo" />
                     <div className="card-body">
