@@ -52,7 +52,7 @@ const Missions = () => {
                     <div className="d-flex flex-column">
                         <label htmlFor="launchDate">Launch Date</label>
                         <select id="launchDate" onChange={(e) => setSelectedDate(e.target.value)} className="form-select">
-                            <option defaultValue="">Choose...</option>
+                            <option value="">Choose...</option>
                             <option value={("0" + (date.getMonth())).slice(-2)}>Last Month</option>
                             <option value={date.getFullYear() - 1}>Last Year</option>
                         </select>
