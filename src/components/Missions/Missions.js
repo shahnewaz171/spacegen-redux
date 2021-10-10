@@ -24,18 +24,45 @@ const Missions = () => {
     const specificMissions = missions?.filter((data) => {
         const getLaunchDate = new Date(data.launch_date_local);
         const launchYear = getLaunchDate.getFullYear();
-        const launchMonth= ("0" + (getLaunchDate.getMonth())).slice(-2);
+        const launchMonth = ("0" + (getLaunchDate.getMonth())).slice(-2) + "/" + launchYear ;
+
         if(searchValue == ""){
             return data;
         }
         else if(data.rocket?.rocket_name.toLowerCase().includes(searchValue.toLowerCase())){
-            if((data.launch_success == true && launchStatus == 'success') || (data.upcoming == true && isUpcoming == "upcoming")){
-                return data;
+            if(launchYear == selectedDate || launchMonth == selectedDate){
+                if(data.launch_success == true && launchStatus == 'success'){
+                    if(data.upcoming == true && isUpcoming == "upcoming"){
+                        return data;
+                    }
+                   else if(data.upcoming != true && isUpcoming != "upcoming"){
+                        return data;
+                   }
+                }
+                else if(data.launch_success == false && launchStatus == 'failure'){
+                    if(data.upcoming == true && isUpcoming == "upcoming"){
+                        return data;
+                    }
+                   else if(data.upcoming != true && isUpcoming != "upcoming"){
+                        return data;
+                   }
+                }
+                else if(data.upcoming == true && launchStatus != 'success' && launchStatus != 'failure' && isUpcoming == "upcoming"){
+                    return data;
+                }
+                else if(isUpcoming == "" && launchStatus == ""){
+                    return data;
+                }
             }
-            else if(launchYear == selectedDate || launchMonth == selectedDate){
-                return data;
+            else if(((data.launch_success == true && launchStatus == 'success') || (data.launch_success == false && launchStatus == 'failure')) && (selectedDate == "")){
+                if(data.upcoming == true && isUpcoming == "upcoming"){
+                    return data;
+                }
+               else if(data.upcoming != true && isUpcoming != "upcoming"){
+                    return data;
+               }
             }
-            else if(data.launch_success !== null && data.launch_success == false && launchStatus == 'failure'){
+            else if((data.upcoming == true && isUpcoming == "upcoming") && (selectedDate == "" && launchStatus == '')){
                 return data;
             }
             else if(launchStatus == '' && isUpcoming == "" && selectedDate == ""){
@@ -44,7 +71,7 @@ const Missions = () => {
         }
     })
 
-
+    
     return (
         <div data-testid = "cards">
             <div className="row align-items-center justify-content-center mt-5 mx-2">
@@ -53,7 +80,7 @@ const Missions = () => {
                         <label htmlFor="launchDate">Launch Date</label>
                         <select id="launchDate" onChange={(e) => setSelectedDate(e.target.value)} className="form-select">
                             <option value="">Choose...</option>
-                            <option value={("0" + (date.getMonth())).slice(-2)}>Last Month</option>
+                            <option value={("0" + (date.getMonth())).slice(-2) + "/" + (date.getFullYear())}>Last Month</option>
                             <option value={date.getFullYear() - 1}>Last Year</option>
                         </select>
                     </div>
